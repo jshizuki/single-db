@@ -1,0 +1,2 @@
+class WlistList < ApplicationRecord
+end

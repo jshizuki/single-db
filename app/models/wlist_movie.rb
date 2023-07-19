@@ -1,0 +1,2 @@
+class WlistMovie < ApplicationRecord
+end
