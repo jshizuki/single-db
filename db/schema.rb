@@ -17,7 +17,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_142219) do
   # checked for single-db - renamed table
   create_table "wlist_bookmarks", force: :cascade do |t|
     t.string "comment"
-    t.bigint "wlist_movie_id", null: false
     t.bigint "wlist_list_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
