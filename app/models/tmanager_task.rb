@@ -1,0 +1,2 @@
+class TmanagerTask < ApplicationRecord
+end
