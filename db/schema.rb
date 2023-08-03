@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_27_034632) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_03_171650) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_034632) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "objects_invoices", force: :cascade do |t|
+    t.date "order_date"
+    t.string "billed_to"
+    t.integer "invoice_number"
+    t.integer "shipping_fee", default: 0
+    t.integer "discount", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "objects_products", force: :cascade do |t|
+    t.string "sku"
+    t.string "name"
+    t.integer "unit_price"
+    t.boolean "sold", default: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "objects_invoice_id"
+    t.index ["objects_invoice_id"], name: "index_objects_products_on_objects_invoice_id"
   end
 
   create_table "tmanager_tasks", force: :cascade do |t|
@@ -66,6 +88,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_034632) do
     t.index ["reset_password_token"], name: "index_wlist_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "objects_products", "objects_invoices"
+  add_foreign_key "products", "invoices"
   add_foreign_key "wlist_bookmarks", "wlist_lists"
   add_foreign_key "wlist_bookmarks", "wlist_movies"
 end
