@@ -6,6 +6,7 @@ ruby "3.1.2"
 # manually added
 gem "devise"
 gem "cloudinary"
+gem 'acts_as_favoritor'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.6"
